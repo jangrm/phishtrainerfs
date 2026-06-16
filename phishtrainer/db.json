@@ -1,0 +1,18 @@
+{
+  "scenarios": [
+    {
+      "id": 1,
+      "from": "support@paypa1-secure.com",
+      "to": "you@example.com",
+      "date": "2026-06-05T09:14:00",
+      "subject": "Urgent: Your account has been limited",
+      "body": "Dear valued customer, we have detected unusual activity...",
+      "isPhishing": true,
+      "difficulty": "medium",
+      "redFlags": [
+        { "text": "paypa1-secure.com", "explanation": "PayPal always sends from @paypal.com" },
+        { "text": "secure-login.net", "explanation": "This is not the real PayPal domain" }
+      ]
+    }
+  ]
+}
