@@ -94,7 +94,13 @@ function Dashboard() {
               className={`streak-dot ${active ? 'is-active' : ''}`}
               key={`streak-${index}`}
               title={`Day ${index + 1}`}
-            />
+            >
+              {active ? (
+                <span className="streak-check">✓</span>
+              ) : (
+                <span className="streak-day">{index + 1}</span>
+              )}
+            </span>
           ))}
         </div>
       </section>
