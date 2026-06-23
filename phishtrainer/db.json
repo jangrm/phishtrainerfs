@@ -1,4 +1,27 @@
 {
+  "dashboard": {
+    "level": 8,
+    "role": "Analyst",
+    "totalXp": 1240,
+    "xpCurrentLevel": 620,
+    "xpNextLevel": 1000,
+    "accuracy": 74,
+    "scenariosDone": 42,
+    "correct": 31,
+    "missed": 11,
+    "streak": [true, true, true, true, true, true, true, false, false, false],
+    "badges": [
+      { "id": 1, "label": "First Catch", "earned": true },
+      { "id": 2, "label": "Sharp Eye", "earned": true },
+      { "id": 3, "label": "Link Inspector", "earned": true },
+      { "id": 4, "label": "Header Reader", "earned": true },
+      { "id": 5, "label": "Calm Analyst", "earned": false },
+      { "id": 6, "label": "Streak Keeper", "earned": false },
+      { "id": 7, "label": "Domain Expert", "earned": false }
+    ],
+    "difficulties": ["Easy", "Medium", "Hard"],
+    "recommendedDifficulty": "Medium"
+  },
   "scenarios": [
     {
       "id": 1,
