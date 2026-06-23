@@ -1,51 +1,29 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import StatCard from '../components/StatCard';
-import { getJson } from '../services/api';
+import EmptyState from '../components/EmptyState';
+import SelectableButtons from '../components/SelectableButtons';
+import { useApiData } from '../hooks/useApiData';
 
 function Dashboard() {
-  const [dashboard, setDashboard] = useState(null);
+  const { data: dashboard, isLoading, error } = useApiData(
+    '/dashboard',
+    'Dashboard data could not be loaded. Start the JSON server with npm run api.',
+  );
   const [selectedDifficulty, setSelectedDifficulty] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    async function loadDashboard() {
-      try {
-        const data = await getJson('/dashboard');
-        setDashboard(data);
-        setSelectedDifficulty(data.recommendedDifficulty);
-      } catch {
-        setError(
-          'Dashboard data could not be loaded. Start the JSON server with npm run api.',
-        );
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    loadDashboard();
-  }, []);
 
   if (isLoading) {
-    return (
-      <div className="view dashboard">
-        <section className="empty-state">Loading training data...</section>
-      </div>
-    );
+    return <EmptyState viewName="dashboard" message="Loading training data..." />;
   }
 
   if (error || !dashboard) {
-    return (
-      <div className="view dashboard">
-        <section className="empty-state">{error}</section>
-      </div>
-    );
+    return <EmptyState viewName="dashboard" message={error} />;
   }
 
   const xpPercent = Math.round(
     (dashboard.xpCurrentLevel / dashboard.xpNextLevel) * 100,
   );
+  const effectiveDifficulty = selectedDifficulty || dashboard.recommendedDifficulty;
 
   return (
     <div className="view dashboard">
@@ -120,22 +98,17 @@ function Dashboard() {
 
       <section className="difficulty-panel">
         <h2>Difficulty</h2>
-        <div className="difficulty-row">
-          {dashboard.difficulties.map((difficulty) => (
-            <button
-              className={selectedDifficulty === difficulty ? 'is-selected' : ''}
-              key={difficulty}
-              onClick={() => setSelectedDifficulty(difficulty)}
-              type="button"
-            >
-              {difficulty}
-            </button>
-          ))}
-        </div>
+        <SelectableButtons
+          className="difficulty-row"
+          options={dashboard.difficulties}
+          selected={effectiveDifficulty}
+          onSelect={setSelectedDifficulty}
+          ariaLabel="Difficulty selection"
+        />
 
         <Link
           className="primary-btn"
-          to={`/scenario?difficulty=${selectedDifficulty.toLowerCase()}`}
+          to={`/scenario?difficulty=${effectiveDifficulty.toLowerCase()}`}
         >
           Start training -&gt;
         </Link>
