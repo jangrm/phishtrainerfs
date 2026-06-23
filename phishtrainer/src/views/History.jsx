@@ -1,7 +1,9 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import HistoryEntry from '../components/HistoryEntry';
 import StatCard from '../components/StatCard';
-import { getJson } from '../services/api';
+import EmptyState from '../components/EmptyState';
+import SelectableButtons from '../components/SelectableButtons';
+import { useApiData } from '../hooks/useApiData';
 
 const filters = ['All', 'Correct', 'Missed', 'Hard'];
 
@@ -15,56 +17,37 @@ function calculateSummary(items) {
 }
 
 function History() {
-  const [historyItems, setHistoryItems] = useState([]);
+  const { data: historyItems, isLoading, error } = useApiData(
+    '/history',
+    'History data could not be loaded. Start the JSON server with npm run api.',
+  );
   const [activeFilter, setActiveFilter] = useState('All');
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState('');
 
-  useEffect(() => {
-    async function loadHistory() {
-      try {
-        const data = await getJson('/history');
-        setHistoryItems(data);
-      } catch {
-        setError(
-          'History data could not be loaded. Start the JSON server with npm run api.',
-        );
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    loadHistory();
-  }, []);
-
-  const summary = useMemo(() => calculateSummary(historyItems), [historyItems]);
+  const summary = useMemo(
+    () => calculateSummary(historyItems ?? []),
+    [historyItems],
+  );
 
   const filteredItems = useMemo(() => {
+    const items = historyItems ?? [];
+
     if (activeFilter === 'All') {
-      return historyItems;
+      return items;
     }
 
     if (activeFilter === 'Hard') {
-      return historyItems.filter((item) => item.difficulty === 'Hard');
+      return items.filter((item) => item.difficulty === 'Hard');
     }
 
-    return historyItems.filter((item) => item.result === activeFilter);
+    return items.filter((item) => item.result === activeFilter);
   }, [activeFilter, historyItems]);
 
   if (isLoading) {
-    return (
-      <div className="view history">
-        <section className="empty-state">Loading training history...</section>
-      </div>
-    );
+    return <EmptyState viewName="history" message="Loading training history..." />;
   }
 
   if (error) {
-    return (
-      <div className="view history">
-        <section className="empty-state">{error}</section>
-      </div>
-    );
+    return <EmptyState viewName="history" message={error} />;
   }
 
   return (
@@ -76,18 +59,13 @@ function History() {
       </div>
 
       <section className="history-panel">
-        <div className="filter-row" aria-label="History filters">
-          {filters.map((filter) => (
-            <button
-              className={activeFilter === filter ? 'is-selected' : ''}
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
-              type="button"
-            >
-              {filter}
-            </button>
-          ))}
-        </div>
+        <SelectableButtons
+          className="filter-row"
+          options={filters}
+          selected={activeFilter}
+          onSelect={setActiveFilter}
+          ariaLabel="History filters"
+        />
 
         <h2>Sessions</h2>
 
