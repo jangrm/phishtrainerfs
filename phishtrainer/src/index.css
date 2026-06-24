@@ -440,6 +440,136 @@ nav a:focus-visible {
     transform: translateY(-1px);
 }
 
+.primary-btn.is-disabled {
+    cursor: not-allowed;
+    filter: grayscale(0.35);
+    opacity: 0.58;
+    pointer-events: auto;
+}
+
+.primary-btn.is-disabled:hover,
+.primary-btn.is-disabled:focus-visible {
+    filter: grayscale(0.35);
+    transform: none;
+}
+
+.scenario-page {
+    gap: 14px;
+}
+
+.scenario-header,
+.email-card,
+.scenario-decision-card {
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 10px 26px rgba(55, 35, 88, 0.08);
+}
+
+.scenario-header {
+    align-items: end;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: 1fr minmax(220px, 320px);
+    padding: 18px;
+}
+
+.scenario-title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.scenario-title-block .level-pill {
+    width: fit-content;
+}
+
+.scenario-progress {
+    min-width: 0;
+}
+
+.email-card {
+    overflow: hidden;
+    text-align: left;
+}
+
+.email-header {
+    background: #f3eff7;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    gap: 8px;
+    padding: 16px 18px;
+}
+
+.email-header p {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.email-header strong {
+    color: var(--text-h);
+    font-weight: 850;
+}
+
+.email-subject {
+    color: var(--text-h);
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.15;
+    margin: 0;
+    padding: 20px 18px 8px;
+    text-transform: none;
+}
+
+.email-body {
+    color: var(--text-h);
+    font-size: 17px;
+    font-weight: 650;
+    line-height: 1.55;
+    padding: 0 18px 22px;
+}
+
+.scenario-decision-card {
+    padding: 16px;
+    text-align: left;
+}
+
+.verdict-buttons {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 12px;
+}
+
+.verdict-buttons button {
+    background: #eeeaf3;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: var(--text-h);
+    cursor: pointer;
+    font-weight: 850;
+    min-height: 52px;
+    transition:
+            background 0.18s ease,
+            border-color 0.18s ease,
+            box-shadow 0.18s ease,
+            color 0.18s ease,
+            transform 0.18s ease;
+}
+
+.verdict-buttons button:hover,
+.verdict-buttons button:focus-visible,
+.verdict-buttons button.is-selected {
+    background: var(--accent);
+    border-color: var(--accent-strong);
+    box-shadow: 0 10px 18px rgba(124, 58, 237, 0.18);
+    color: white;
+    outline: none;
+    transform: translateY(-1px);
+}
+
 .history-panel {
     background: var(--surface-soft);
     border: 1px solid var(--border);
@@ -623,7 +753,9 @@ nav a:focus-visible {
 
     .dashboard-hero,
     .stats-row,
-    .difficulty-row {
+    .difficulty-row,
+    .scenario-header,
+    .verdict-buttons {
         grid-template-columns: 1fr;
     }
 
