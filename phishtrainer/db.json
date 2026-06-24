@@ -38,6 +38,34 @@
       ]
     }
   ],
+  "feedback": {
+    "correct": true,
+    "message": "Correct - that was phishing!",
+    "xpEarned": 80,
+    "flagsFound": 2,
+    "totalFlags": 3,
+    "accuracy": 74,
+    "xpCurrent": 620,
+    "xpToNextLevel": 1000,
+    "level": 9,
+    "redFlags": [
+      {
+        "label": "Suspicious sender domain paypa1-secure.com",
+        "detail": "PayPal always sends from @paypal.com — the \"1\" instead of \"l\" is a classic trick.",
+        "status": "found"
+      },
+      {
+        "label": "Malicious link secure-login.net",
+        "detail": "The real PayPal domain is paypal.com — this link leads to a fake login page.",
+        "status": "found"
+      },
+      {
+        "label": "Urgency language within 24 hours",
+        "detail": "You spotted this one — creating panic is a common phishing tactic.",
+        "status": "missed"
+      }
+    ]
+  },
   "history": [
     {
       "id": 1,
