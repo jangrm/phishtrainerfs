@@ -50,7 +50,8 @@ function Scenario() {
   const selectedDifficulty = searchParams.get('difficulty');
   const scenario = getScenarioByDifficulty(scenarios, selectedDifficulty);
   const scenarioIndex = scenarios.findIndex((item) => item.id === scenario.id) + 1;
-  const progress = Math.round((scenarioIndex / 10) * 100);
+  const scenarioTotal = scenarios.length;
+  const progress = Math.round((scenarioIndex / scenarioTotal) * 100);
   const difficultyLabel =
     scenario.difficulty.charAt(0).toUpperCase() + scenario.difficulty.slice(1);
   const feedbackPath = `/feedback?scenarioId=${scenario.id}&decision=${decision}&difficulty=${scenario.difficulty}`;
@@ -60,7 +61,9 @@ function Scenario() {
       <section className="scenario-header">
         <div className="scenario-title-block">
           <span className="level-pill">{difficultyLabel}</span>
-          <h1>Scenario {scenarioIndex} / 10</h1>
+          <h1>
+            Scenario {scenarioIndex} / {scenarioTotal}
+          </h1>
         </div>
 
         <div className="scenario-progress">

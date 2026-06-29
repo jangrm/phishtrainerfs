@@ -9,22 +9,196 @@
     "scenariosDone": 42,
     "correct": 31,
     "missed": 11,
-    "streak": [true, true, true, true, true, true, true, false, false, false],
-    "badges": [
-      { "id": 1, "label": "First Catch", "earned": true },
-      { "id": 2, "label": "Sharp Eye", "earned": true },
-      { "id": 3, "label": "Link Inspector", "earned": true },
-      { "id": 4, "label": "Header Reader", "earned": true },
-      { "id": 5, "label": "Calm Analyst", "earned": false },
-      { "id": 6, "label": "Streak Keeper", "earned": false },
-      { "id": 7, "label": "Domain Expert", "earned": false }
+    "streakIcon": "🔥",
+    "badgeSectionIcon": "🏅",
+    "streakTitle": "Don't break the chain",
+    "streakBadgeIcon": "🏆",
+    "streakBadge": "Personal best",
+    "streak": [
+      {
+        "day": 1,
+        "completed": true,
+        "current": false
+      },
+      {
+        "day": 2,
+        "completed": true,
+        "current": false
+      },
+      {
+        "day": 3,
+        "completed": true,
+        "current": false
+      },
+      {
+        "day": 4,
+        "completed": true,
+        "current": false
+      },
+      {
+        "day": 5,
+        "completed": true,
+        "current": false
+      },
+      {
+        "day": 6,
+        "completed": true,
+        "current": false
+      },
+      {
+        "day": 7,
+        "completed": true,
+        "current": false
+      },
+      {
+        "day": 8,
+        "completed": true,
+        "current": false
+      },
+      {
+        "day": 9,
+        "completed": true,
+        "current": false
+      },
+      {
+        "day": 10,
+        "completed": true,
+        "current": true
+      },
+      {
+        "day": 11,
+        "completed": false,
+        "current": false
+      },
+      {
+        "day": 12,
+        "completed": false,
+        "current": false
+      },
+      {
+        "day": 13,
+        "completed": false,
+        "current": false
+      },
+      {
+        "day": 14,
+        "completed": false,
+        "current": false
+      }
     ],
-    "difficulties": ["Easy", "Medium", "Hard"],
+    "badges": [
+      {
+        "id": 1,
+        "label": "First Catch",
+        "icon": "🎣",
+        "color": "#8b5cf6",
+        "earned": true
+      },
+      {
+        "id": 2,
+        "label": "Eagle Eye",
+        "icon": "👁️",
+        "color": "#3b82f6",
+        "earned": true
+      },
+      {
+        "id": 3,
+        "label": "Defender",
+        "icon": "🛡️",
+        "color": "#10b981",
+        "earned": true
+      },
+      {
+        "id": 4,
+        "label": "On Fire",
+        "icon": "🔥",
+        "color": "#f97316",
+        "earned": true
+      },
+      {
+        "id": 5,
+        "label": "Sharpshooter",
+        "icon": "🎯",
+        "color": "#ef4444",
+        "earned": true
+      },
+      {
+        "id": 6,
+        "label": "Lockdown",
+        "icon": "🔒",
+        "color": "#0ea5e9",
+        "earned": true
+      },
+      {
+        "id": 7,
+        "label": "Risk Aware",
+        "icon": "⚠️",
+        "color": "#f59e0b",
+        "earned": true
+      },
+      {
+        "id": 8,
+        "label": "Rising Star",
+        "icon": "⭐",
+        "color": "#a855f7",
+        "earned": true
+      },
+      {
+        "id": 9,
+        "label": "Rookie",
+        "icon": "💻",
+        "color": "#94a3b8",
+        "earned": false
+      },
+      {
+        "id": 10,
+        "label": "Elite",
+        "icon": "👑",
+        "color": "#64748b",
+        "earned": false
+      }
+    ],
+    "difficulties": [
+      "Easy",
+      "Medium",
+      "Hard"
+    ],
+    "selectedDifficulty": "Medium",
     "recommendedDifficulty": "Medium"
   },
+  "historyFilters": [
+    {
+      "label": "All",
+      "value": "all",
+      "field": null,
+      "match": null,
+      "id": "xdwctMak584"
+    },
+    {
+      "label": "Correct",
+      "value": "correct",
+      "field": "result",
+      "match": "Correct",
+      "id": "QTzseru6mNQ"
+    },
+    {
+      "label": "Missed",
+      "value": "missed",
+      "field": "result",
+      "match": "Missed",
+      "id": "z-cBA9YMnEE"
+    },
+    {
+      "label": "Hard",
+      "value": "hard",
+      "field": "difficulty",
+      "match": "Hard",
+      "id": "B1rQJYNmqjM"
+    }
+  ],
   "scenarios": [
     {
-      "id": 1,
+      "id": "1",
       "from": "support@paypa1-secure.com",
       "to": "you@example.com",
       "date": "2026-06-05T09:14:00",
@@ -33,8 +207,14 @@
       "isPhishing": true,
       "difficulty": "medium",
       "redFlags": [
-        { "text": "paypa1-secure.com", "explanation": "PayPal always sends from @paypal.com" },
-        { "text": "secure-login.net", "explanation": "This is not the real PayPal domain" }
+        {
+          "text": "paypa1-secure.com",
+          "explanation": "PayPal always sends from @paypal.com"
+        },
+        {
+          "text": "secure-login.net",
+          "explanation": "This is not the real PayPal domain"
+        }
       ]
     }
   ],
@@ -68,7 +248,7 @@
   },
   "history": [
     {
-      "id": 1,
+      "id": "1",
       "title": "PayPal verification email",
       "difficulty": "Medium",
       "flagsFound": 2,
@@ -78,7 +258,7 @@
       "date": "2026-06-05T09:22:00"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "IT support password reset",
       "difficulty": "Hard",
       "flagsFound": 1,
@@ -88,7 +268,7 @@
       "date": "2026-06-04T18:45:00"
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Amazon order confirmation",
       "difficulty": "Easy",
       "flagsFound": 3,
@@ -98,7 +278,7 @@
       "date": "2026-06-03T17:10:00"
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "DHL delivery notification",
       "difficulty": "Medium",
       "flagsFound": 0,
@@ -108,7 +288,7 @@
       "date": "2026-06-02T14:30:00"
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Microsoft account alert",
       "difficulty": "Hard",
       "flagsFound": 4,
@@ -117,5 +297,6 @@
       "xp": 100,
       "date": "2026-06-01T11:05:00"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

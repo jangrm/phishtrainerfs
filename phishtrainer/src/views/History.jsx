@@ -5,8 +5,6 @@ import EmptyState from '../components/EmptyState';
 import SelectableButtons from '../components/SelectableButtons';
 import { useApiData } from '../hooks/useApiData';
 
-const filters = ['All', 'Correct', 'Missed', 'Hard'];
-
 function calculateSummary(items) {
   const total = items.length;
   const correct = items.filter((item) => item.result === 'Correct').length;
@@ -21,7 +19,11 @@ function History() {
     '/history',
     'History data could not be loaded. Start the JSON server with npm run api.',
   );
-  const [activeFilter, setActiveFilter] = useState('All');
+  const { data: filters, error: filterError } = useApiData(
+    '/historyFilters',
+    'History filters could not be loaded. Start the JSON server with npm run api.',
+  );
+  const [activeFilter, setActiveFilter] = useState('');
 
   const summary = useMemo(
     () => calculateSummary(historyItems ?? []),
@@ -30,24 +32,24 @@ function History() {
 
   const filteredItems = useMemo(() => {
     const items = historyItems ?? [];
+    const selectedFilter =
+      filters?.find((filter) => filter.value === activeFilter) ?? filters?.[0];
 
-    if (activeFilter === 'All') {
+    if (!selectedFilter?.field) {
       return items;
     }
 
-    if (activeFilter === 'Hard') {
-      return items.filter((item) => item.difficulty === 'Hard');
-    }
-
-    return items.filter((item) => item.result === activeFilter);
-  }, [activeFilter, historyItems]);
+    return items.filter(
+      (item) => item[selectedFilter.field] === selectedFilter.match,
+    );
+  }, [activeFilter, filters, historyItems]);
 
   if (isLoading) {
     return <EmptyState viewName="history" message="Loading training history..." />;
   }
 
-  if (error) {
-    return <EmptyState viewName="history" message={error} />;
+  if (error || filterError) {
+    return <EmptyState viewName="history" message={error || filterError} />;
   }
 
   return (
@@ -61,8 +63,8 @@ function History() {
       <section className="history-panel">
         <SelectableButtons
           className="filter-row"
-          options={filters}
-          selected={activeFilter}
+          options={filters ?? []}
+          selected={activeFilter || filters?.[0]?.value}
           onSelect={setActiveFilter}
           ariaLabel="History filters"
         />

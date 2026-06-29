@@ -1,16 +1,22 @@
 function SelectableButtons({ options, selected, onSelect, ariaLabel, className }) {
   return (
     <div className={className} aria-label={ariaLabel}>
-      {options.map((option) => (
-        <button
-          className={selected === option ? 'is-selected' : ''}
-          key={option}
-          onClick={() => onSelect(option)}
-          type="button"
-        >
-          {option}
-        </button>
-      ))}
+      {options.map((option) => {
+        const label = typeof option === 'string' ? option : option.label;
+        const value = typeof option === 'string' ? option : option.value;
+        const optionClass = `option-${label.toLowerCase().replace(/\s+/g, '-')}`;
+
+        return (
+          <button
+            className={`${optionClass} ${selected === value ? 'is-selected' : ''}`}
+            key={value}
+            onClick={() => onSelect(value, option)}
+            type="button"
+          >
+            {label}
+          </button>
+        );
+      })}
     </div>
   );
 }
