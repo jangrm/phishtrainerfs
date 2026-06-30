@@ -163,7 +163,7 @@
       "Medium",
       "Hard"
     ],
-    "selectedDifficulty": "Medium",
+    "selectedDifficulty": "Easy",
     "recommendedDifficulty": "Medium"
   },
   "historySummary": {
@@ -173,30 +173,147 @@
     "accuracyField": "result",
     "accuracyMatch": "Correct",
     "stats": [
-      { "id": "total", "label": "total done", "tone": "primary" },
-      { "id": "accuracy", "label": "accuracy", "tone": "success", "suffix": "%" },
-      { "id": "totalXp", "label": "total XP", "tone": "gold" }
+      {
+        "id": "total",
+        "label": "total done",
+        "tone": "primary"
+      },
+      {
+        "id": "accuracy",
+        "label": "accuracy",
+        "tone": "success",
+        "suffix": "%"
+      },
+      {
+        "id": "totalXp",
+        "label": "total XP",
+        "tone": "gold"
+      }
     ]
   },
   "historyFilters": [
-    { "id": "all", "label": "All", "value": "all", "field": null, "match": null },
-    { "id": "correct", "label": "Correct", "value": "correct", "field": "result", "match": "Correct" },
-    { "id": "missed", "label": "Missed", "value": "missed", "field": "result", "match": "Missed" }
+    {
+      "id": "all",
+      "label": "All",
+      "value": "all",
+      "field": null,
+      "match": null
+    },
+    {
+      "id": "correct",
+      "label": "Correct",
+      "value": "correct",
+      "field": "result",
+      "match": "Correct"
+    },
+    {
+      "id": "missed",
+      "label": "Missed",
+      "value": "missed",
+      "field": "result",
+      "match": "Missed"
+    }
   ],
   "historyDifficultyFilters": [
-    { "id": "all-difficulties", "label": "All difficulties", "value": "all", "field": null, "match": null },
-    { "id": "easy", "label": "Easy", "value": "easy", "field": "difficulty", "match": "Easy" },
-    { "id": "medium", "label": "Medium", "value": "medium", "field": "difficulty", "match": "Medium" },
-    { "id": "hard", "label": "Hard", "value": "hard", "field": "difficulty", "match": "Hard" }
+    {
+      "id": "all-difficulties",
+      "label": "All difficulties",
+      "value": "all",
+      "field": null,
+      "match": null
+    },
+    {
+      "id": "easy",
+      "label": "Easy",
+      "value": "easy",
+      "field": "difficulty",
+      "match": "Easy"
+    },
+    {
+      "id": "medium",
+      "label": "Medium",
+      "value": "medium",
+      "field": "difficulty",
+      "match": "Medium"
+    },
+    {
+      "id": "hard",
+      "label": "Hard",
+      "value": "hard",
+      "field": "difficulty",
+      "match": "Hard"
+    }
   ],
   "scenarios": [
     {
       "id": "1",
+      "title": "Dropbox shared file",
+      "senderName": "Dropbox",
+      "category": "Cloud storage",
+      "xp": 50,
+      "from": "no-reply@dropbox.com",
+      "to": "you@example.com",
+      "date": "2026-06-05T09:14:00",
+      "subject": "Alex shared Q2 roadmap.pdf with you",
+      "body": "Hi, Alex shared a file with you through Dropbox. Open Q2 roadmap.pdf to review the latest notes. This link expires after your team access changes.",
+      "isPhishing": false,
+      "difficulty": "easy",
+      "redFlags": []
+    },
+    {
+      "id": "2",
+      "title": "Streaming payment alert",
+      "senderName": "StreamPlus Billing",
+      "category": "Subscription",
+      "xp": 60,
+      "from": "billing@streamplus-support.com",
+      "to": "you@example.com",
+      "date": "2026-06-06T08:30:00",
+      "subject": "Payment failed - update card today",
+      "body": "We could not process your monthly payment. Update your card today at streamplus-billing.net to avoid account suspension.",
+      "isPhishing": true,
+      "difficulty": "easy",
+      "redFlags": [
+        {
+          "text": "streamplus-support.com",
+          "explanation": "The sender uses a support-style domain instead of the official StreamPlus domain."
+        },
+        {
+          "text": "streamplus-billing.net",
+          "explanation": "The payment link points to a different domain than the sender."
+        },
+        {
+          "text": "account suspension",
+          "explanation": "Threatening suspension creates pressure so users act before checking details."
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "HR holiday calendar",
+      "senderName": "People Team",
+      "category": "Internal HR",
+      "xp": 50,
+      "from": "people@company.example",
+      "to": "you@example.com",
+      "date": "2026-06-07T10:45:00",
+      "subject": "Updated holiday calendar for July",
+      "body": "The July holiday calendar has been updated in the employee portal. Please review the new entries before Friday's planning meeting.",
+      "isPhishing": false,
+      "difficulty": "easy",
+      "redFlags": []
+    },
+    {
+      "id": "4",
       "from": "support@paypa1-secure.com",
+      "title": "PayPal account limitation",
+      "senderName": "PayPal Support",
+      "category": "Finance",
+      "xp": 80,
       "to": "you@example.com",
       "date": "2026-06-05T09:14:00",
       "subject": "Urgent: Your account has been limited",
-      "body": "Dear valued customer, we have detected unusual activity...",
+      "body": "Dear valued customer, we have detected unusual activity on your account. Please verify your identity within 24 hours at secure-login.net to restore full access.",
       "isPhishing": true,
       "difficulty": "medium",
       "redFlags": [
@@ -207,6 +324,140 @@
         {
           "text": "secure-login.net",
           "explanation": "This is not the real PayPal domain"
+        },
+        {
+          "text": "within 24 hours",
+          "explanation": "A short deadline is used to create urgency."
+        },
+        {
+          "text": "Dear valued customer",
+          "explanation": "Generic greetings are suspicious for account-specific alerts."
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Microsoft password reset",
+      "senderName": "Microsoft Security",
+      "category": "Account security",
+      "xp": 80,
+      "from": "security@microsoft-alerts.co",
+      "to": "you@example.com",
+      "date": "2026-06-08T12:20:00",
+      "subject": "Password reset required immediately",
+      "body": "Your Microsoft account will be disabled unless you confirm your password reset at login-microsoft365.com. This action is required immediately.",
+      "isPhishing": true,
+      "difficulty": "medium",
+      "redFlags": [
+        {
+          "text": "microsoft-alerts.co",
+          "explanation": "The sender domain is not an official microsoft.com domain."
+        },
+        {
+          "text": "login-microsoft365.com",
+          "explanation": "Attackers often register lookalike domains that include trusted brand names."
+        },
+        {
+          "text": "will be disabled",
+          "explanation": "The message threatens account loss to push a quick reaction."
+        },
+        {
+          "text": "required immediately",
+          "explanation": "Urgent wording is a common phishing pressure tactic."
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Travel booking receipt",
+      "senderName": "Travel Desk",
+      "category": "Travel",
+      "xp": 70,
+      "from": "travel.desk@company.example",
+      "to": "you@example.com",
+      "date": "2026-06-09T15:10:00",
+      "subject": "Receipt for Berlin workshop booking",
+      "body": "Your hotel booking for the Berlin workshop is confirmed. The receipt is available in the travel portal under trip ID BER-2048.",
+      "isPhishing": false,
+      "difficulty": "medium",
+      "redFlags": []
+    },
+    {
+      "id": "7",
+      "title": "Invoice with macro attachment",
+      "senderName": "Vendor Accounts",
+      "category": "Invoice",
+      "xp": 100,
+      "from": "accounts@vend0r-payments.com",
+      "to": "you@example.com",
+      "date": "2026-06-10T07:55:00",
+      "subject": "Overdue invoice INV-44821 - final notice",
+      "body": "Please open Invoice_INV-44821.xlsm and enable macros to view payment details. Failure to settle today may result in legal escalation.",
+      "isPhishing": true,
+      "difficulty": "hard",
+      "redFlags": [
+        {
+          "text": "vend0r-payments.com",
+          "explanation": "The domain uses a zero in place of the letter o."
+        },
+        {
+          "text": "Invoice_INV-44821.xlsm",
+          "explanation": "Macro-enabled spreadsheets are risky when they arrive unexpectedly."
+        },
+        {
+          "text": "enable macros",
+          "explanation": "Legitimate senders should not ask users to enable macros to view an invoice."
+        },
+        {
+          "text": "legal escalation",
+          "explanation": "Legal threats are used to trigger fear and rushed decisions."
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "title": "IT device compliance",
+      "senderName": "IT Service Desk",
+      "category": "Internal IT",
+      "xp": 100,
+      "from": "it-service@company.example",
+      "to": "you@example.com",
+      "date": "2026-06-11T16:40:00",
+      "subject": "Device compliance check",
+      "body": "Your laptop is due for a routine compliance check. Open the company endpoint portal and run the scheduled scan before Friday.",
+      "isPhishing": false,
+      "difficulty": "hard",
+      "redFlags": []
+    },
+    {
+      "id": "9",
+      "title": "Executive gift card request",
+      "senderName": "CEO Office",
+      "category": "Business email compromise",
+      "xp": 110,
+      "from": "ceo.office@cornpany.example",
+      "to": "you@example.com",
+      "date": "2026-06-12T18:05:00",
+      "subject": "Need a quick favor before the board call",
+      "body": "I am in meetings and need you to buy five gift cards for client appreciation. Reply with the codes and keep this confidential until I brief finance.",
+      "isPhishing": true,
+      "difficulty": "hard",
+      "redFlags": [
+        {
+          "text": "cornpany.example",
+          "explanation": "The domain swaps rn for m, a subtle lookalike trick."
+        },
+        {
+          "text": "gift cards",
+          "explanation": "Gift card purchases are a common business email compromise request."
+        },
+        {
+          "text": "Reply with the codes",
+          "explanation": "Asking for gift card codes is a strong fraud signal."
+        },
+        {
+          "text": "keep this confidential",
+          "explanation": "Secrecy prevents normal verification with finance or a manager."
         }
       ]
     }
