@@ -4,7 +4,8 @@ function SelectableButtons({ options, selected, onSelect, ariaLabel, className }
       {options.map((option) => {
         const label = typeof option === 'string' ? option : option.label;
         const value = typeof option === 'string' ? option : option.value;
-        const optionClass = `option-${label.toLowerCase().replace(/\s+/g, '-')}`;
+        const className = typeof option === 'string' ? label : value;
+        const optionClass = `option-${className.toLowerCase().replace(/\s+/g, '-')}`;
 
         return (
           <button

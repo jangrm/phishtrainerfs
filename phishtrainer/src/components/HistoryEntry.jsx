@@ -8,30 +8,39 @@ function formatHistoryDate(value) {
 }
 
 function HistoryEntry({ item }) {
-  const isCorrect = item.result === 'Correct';
+  const difficultyClass = `is-${item.difficulty.toLowerCase()}`;
+  const resultClass = `is-${item.result.toLowerCase()}`;
 
   return (
-    <div className="history-item">
-      <span className={`history-status-icon ${isCorrect ? 'is-correct' : 'is-missed'}`}>
-        {isCorrect ? '✓' : ''}
-      </span>
+    <article className={`history-item ${resultClass}`}>
+      <span
+        aria-label={item.result}
+        className={`history-status-icon ${resultClass}`}
+      />
 
       <div className="history-main">
         <p className="history-title">{item.title}</p>
         <p className="history-meta">
-          {item.difficulty} · {item.flagsFound}/{item.totalFlags} flags ·{' '}
-          {formatHistoryDate(item.date)}
+          <span className={`difficulty-chip ${difficultyClass}`}>
+            {item.difficulty}
+          </span>
+          <span>
+            {item.flagsFound}/{item.totalFlags} flags
+          </span>
+          <span>{formatHistoryDate(item.date)}</span>
         </p>
       </div>
 
       <div className="history-result">
-        <span className={`result-badge ${isCorrect ? 'is-correct' : 'is-missed'}`}>
+        <span className={`result-badge ${resultClass}`}>
           {item.result}
         </span>
         <p className="xp">+{item.xp} XP</p>
       </div>
-    </div>
+    </article>
   );
 }
 
 export default HistoryEntry;
+
+

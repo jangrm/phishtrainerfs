@@ -166,35 +166,28 @@
     "selectedDifficulty": "Medium",
     "recommendedDifficulty": "Medium"
   },
+  "historySummary": {
+    "title": "Session overview",
+    "description": "Review past simulations, compare results, and spot where phishing signals were missed.",
+    "icon": "📊",
+    "accuracyField": "result",
+    "accuracyMatch": "Correct",
+    "stats": [
+      { "id": "total", "label": "total done", "tone": "primary" },
+      { "id": "accuracy", "label": "accuracy", "tone": "success", "suffix": "%" },
+      { "id": "totalXp", "label": "total XP", "tone": "gold" }
+    ]
+  },
   "historyFilters": [
-    {
-      "label": "All",
-      "value": "all",
-      "field": null,
-      "match": null,
-      "id": "xdwctMak584"
-    },
-    {
-      "label": "Correct",
-      "value": "correct",
-      "field": "result",
-      "match": "Correct",
-      "id": "QTzseru6mNQ"
-    },
-    {
-      "label": "Missed",
-      "value": "missed",
-      "field": "result",
-      "match": "Missed",
-      "id": "z-cBA9YMnEE"
-    },
-    {
-      "label": "Hard",
-      "value": "hard",
-      "field": "difficulty",
-      "match": "Hard",
-      "id": "B1rQJYNmqjM"
-    }
+    { "id": "all", "label": "All", "value": "all", "field": null, "match": null },
+    { "id": "correct", "label": "Correct", "value": "correct", "field": "result", "match": "Correct" },
+    { "id": "missed", "label": "Missed", "value": "missed", "field": "result", "match": "Missed" }
+  ],
+  "historyDifficultyFilters": [
+    { "id": "all-difficulties", "label": "All difficulties", "value": "all", "field": null, "match": null },
+    { "id": "easy", "label": "Easy", "value": "easy", "field": "difficulty", "match": "Easy" },
+    { "id": "medium", "label": "Medium", "value": "medium", "field": "difficulty", "match": "Medium" },
+    { "id": "hard", "label": "Hard", "value": "hard", "field": "difficulty", "match": "Hard" }
   ],
   "scenarios": [
     {
