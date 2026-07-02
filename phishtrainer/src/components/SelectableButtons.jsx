@@ -15,6 +15,7 @@ function SelectableButtons({ options, selected, onSelect, ariaLabel, className }
             type="button"
           >
             {label}
+            {option.recommended && <span className="recommended-tag">For you</span>}
           </button>
         );
       })}

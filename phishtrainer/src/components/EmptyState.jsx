@@ -1,6 +1,6 @@
 function EmptyState({ viewName, message }) {
   return (
-    <div className={`view ${viewName}`}>
+    <div className={`view ${viewName ?? ''}`.trim()}>
       <section className="empty-state">{message}</section>
     </div>
   );

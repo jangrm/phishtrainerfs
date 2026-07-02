@@ -83,7 +83,7 @@ function History() {
   }
 
   return (
-    <div className="view history">
+    <main className="view history">
       <section className="history-hero">
         <div className="history-hero-icon" aria-hidden="true">
           {summaryConfig.icon}
@@ -139,7 +139,7 @@ function History() {
           ))}
         </div>
       </section>
-    </div>
+    </main>
   );
 }
 
