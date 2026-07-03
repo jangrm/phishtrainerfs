@@ -5,167 +5,292 @@ import StatCard from '../components/StatCard';
 import { useApiData } from '../hooks/useApiData';
 
 function parseSelectedFlags(value) {
-  if (!value) {
-    return [];
-  }
+    if (!value) return [];
 
-  return value
-    .split(',')
-    .map((item) => Number(item))
-    .filter((item) => Number.isInteger(item));
+    return value
+        .split(',')
+        .map((item) => Number(item))
+        .filter((item) => Number.isInteger(item));
+}
+
+function formatScenarioDate(value) {
+    return new Intl.DateTimeFormat('en', {
+        weekday: 'short',
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+    }).format(new Date(value));
 }
 
 function calculateXp(scenario, correct, flagsFound, totalFlags) {
-  const baseXp = scenario.xp ?? 60;
+    const maxXp = scenario.xp ?? 0;
 
-  if (!scenario.isPhishing) {
-    return correct ? baseXp : 0;
-  }
+    if (!scenario.isPhishing) {
+        return correct ? maxXp : 0;
+    }
 
-  const flagRatio = totalFlags === 0 ? 1 : flagsFound / totalFlags;
+    const verdictXp = correct ? Math.round(maxXp * 0.6) : 0;
+    const flagXp =
+        totalFlags > 0 ? Math.round(maxXp * 0.4 * (flagsFound / totalFlags)) : 0;
 
-  if (correct) {
-    return Math.round(baseXp * (0.6 + flagRatio * 0.4));
-  }
+    return Math.min(maxXp, verdictXp + flagXp);
+}
 
-  return Math.round(baseXp * flagRatio * 0.2);
+function renderReviewedText(value, redFlags, selectedFlags) {
+    const matches = redFlags
+        .map((flag, index) => ({
+            flag,
+            index,
+            position: value.indexOf(flag.text),
+        }))
+        .filter((match) => match.position >= 0)
+        .sort((a, b) => a.position - b.position);
+
+    if (!matches.length) return value;
+
+    const parts = [];
+    let cursor = 0;
+
+    matches.forEach(({ flag, index, position }) => {
+        if (position < cursor) return;
+
+        if (position > cursor) {
+            parts.push(value.slice(cursor, position));
+        }
+
+        const found = selectedFlags.includes(index);
+
+        parts.push(
+            <span
+                key={`${flag.text}-${position}`}
+                className={`feedback-token ${found ? 'is-found' : 'is-missed'}`}
+            >
+        {flag.text}
+      </span>,
+        );
+
+        cursor = position + flag.text.length;
+    });
+
+    if (cursor < value.length) {
+        parts.push(value.slice(cursor));
+    }
+
+    return parts;
 }
 
 function Feedback() {
-  const [searchParams] = useSearchParams();
-  const {
-    data: scenarios,
-    isLoading: scenariosLoading,
-    error: scenariosError,
-  } = useApiData('/scenarios', 'Could not load scenarios.');
-  const {
-    data: dashboard,
-    isLoading: dashboardLoading,
-    error: dashboardError,
-  } = useApiData('/dashboard', 'Could not load dashboard data.');
+    const [searchParams] = useSearchParams();
 
-  if (scenariosLoading || dashboardLoading) {
-    return <EmptyState message="Loading feedback..." />;
-  }
+    const {
+        data: scenarios,
+        isLoading: scenariosLoading,
+        error: scenariosError,
+    } = useApiData('/scenarios', 'Could not load scenarios.');
 
-  if (scenariosError || dashboardError || !scenarios?.length || !dashboard) {
-    return (
-      <EmptyState
-        message={
-          scenariosError ||
-          dashboardError ||
-          'No feedback data available.'
-        }
-      />
+    const {
+        data: dashboard,
+        isLoading: dashboardLoading,
+        error: dashboardError,
+    } = useApiData('/dashboard', 'Could not load dashboard data.');
+
+    if (scenariosLoading || dashboardLoading) {
+        return <EmptyState message="Loading feedback..." />;
+    }
+
+    if (scenariosError || dashboardError || !scenarios?.length || !dashboard) {
+        return (
+            <EmptyState
+                message={scenariosError || dashboardError || 'No feedback data available.'}
+            />
+        );
+    }
+
+    const scenarioId = searchParams.get('scenarioId');
+    const decision = searchParams.get('decision');
+    const difficulty = searchParams.get('difficulty');
+    const selectedFlags = [...new Set(parseSelectedFlags(searchParams.get('flags')))];
+    const isLastScenario = searchParams.get('isLastScenario') === 'true';
+    const nextScenarioId = searchParams.get('nextScenarioId');
+
+    const scenario = scenarios.find((item) => item.id === scenarioId);
+
+    if (!scenario || !decision) {
+        return <EmptyState message="Feedback could not be calculated." />;
+    }
+
+    const redFlags = scenario.redFlags ?? [];
+    const totalFlags = redFlags.length;
+    const flagsFound = selectedFlags.filter(
+        (index) => index >= 0 && index < totalFlags,
+    ).length;
+
+    const scenarioSet = scenarios.filter((item) => item.difficulty === difficulty);
+    const visibleScenarios = scenarioSet.length ? scenarioSet : scenarios;
+    const scenarioIndex =
+        visibleScenarios.findIndex((item) => item.id === scenario.id) + 1;
+    const scenarioTotal = visibleScenarios.length;
+
+    const expectedDecision = scenario.isPhishing ? 'phishing' : 'legitimate';
+    const correct = decision === expectedDecision;
+    const xpEarned = calculateXp(scenario, correct, flagsFound, totalFlags);
+    const xpCurrent = dashboard.xpCurrentLevel + xpEarned;
+    const xpRemaining = Math.max(0, dashboard.xpNextLevel - xpCurrent);
+    const progress = Math.min(
+        100,
+        Math.round((xpCurrent / dashboard.xpNextLevel) * 100),
     );
-  }
 
-  const scenarioId = searchParams.get('scenarioId');
-  const decision = searchParams.get('decision');
-  const selectedFlags = parseSelectedFlags(searchParams.get('flags'));
-  const difficulty = searchParams.get('difficulty');
-  const isLastScenario = searchParams.get('isLastScenario') === 'true';
-  const nextScenarioId = searchParams.get('nextScenarioId');
-  const scenario = scenarios.find((item) => item.id === scenarioId);
+    const nextScenarioPath = isLastScenario
+        ? '/'
+        : `/scenario?difficulty=${scenario.difficulty}&scenarioId=${nextScenarioId || scenario.id}`;
 
-  if (!scenario || !decision) {
-    return <EmptyState message="Feedback could not be calculated." />;
-  }
+    const message = correct
+        ? `Correct - that was ${scenario.isPhishing ? 'phishing' : 'legitimate'}!`
+        : `Missed - that was ${scenario.isPhishing ? 'phishing' : 'legitimate'}.`;
 
-  const scenarioSet = scenarios.filter((item) => item.difficulty === difficulty);
-  const visibleScenarios = scenarioSet.length ? scenarioSet : scenarios;
-  const scenarioIndex =
-    visibleScenarios.findIndex((item) => item.id === scenario.id) + 1;
-  const scenarioTotal = visibleScenarios.length;
-  const expectedDecision = scenario.isPhishing ? 'phishing' : 'legitimate';
-  const correct = decision === expectedDecision;
-  const totalFlags = scenario.redFlags?.length ?? 0;
-  const uniqueSelectedFlags = [...new Set(selectedFlags)];
-  const flagsFound = uniqueSelectedFlags.filter(
-    (index) => index >= 0 && index < totalFlags,
-  ).length;
-  const xpEarned = calculateXp(scenario, correct, flagsFound, totalFlags);
-  const xpCurrent = dashboard.xpCurrentLevel + xpEarned;
-  const progress = Math.min(
-    100,
-    Math.round((xpCurrent / dashboard.xpNextLevel) * 100),
-  );
-  const nextScenarioPath = isLastScenario
-    ? '/'
-    : `/scenario?difficulty=${scenario.difficulty}&scenarioId=${nextScenarioId || scenario.id}`;
-  const message = correct
-    ? `Correct - that was ${scenario.isPhishing ? 'phishing' : 'legitimate'}!`
-    : `Missed - that was ${scenario.isPhishing ? 'phishing' : 'legitimate'}.`;
-  const subMessage = totalFlags
-    ? `You identified ${flagsFound} of ${totalFlags} red flags`
-    : 'No red flags were expected in this message';
-  const explainedFlags = totalFlags
-    ? scenario.redFlags.map((flag, index) => ({
-        label: flag.text,
-        detail: flag.explanation,
-        status: uniqueSelectedFlags.includes(index) ? 'found' : 'missed',
-      }))
-    : [
-        {
-          label: 'Legitimate message',
-          detail: 'This email uses a consistent sender, ordinary wording, and no suspicious links or requests.',
-          status: correct ? 'found' : 'missed',
-        },
-      ];
+    const subMessage = totalFlags
+        ? `You identified ${flagsFound} of ${totalFlags} red flags`
+        : 'No red flags were expected in this message';
 
-  return (
-    <main className="feedback-page">
-      <ResultBanner
-        correct={correct}
-        message={message}
-        subMessage={subMessage}
-        scenario={`Scenario ${scenarioIndex}/${scenarioTotal}`}
-      />
+    const explainedFlags = totalFlags
+        ? redFlags.map((flag, index) => ({
+            label: flag.text,
+            detail: flag.explanation,
+            status: selectedFlags.includes(index) ? 'found' : 'missed',
+        }))
+        : [
+            {
+                label: 'Legitimate message',
+                detail:
+                    'This email uses a consistent sender, ordinary wording, and no suspicious links or requests.',
+                status: correct ? 'found' : 'missed',
+            },
+        ];
 
-      <div className="feedback-stats">
-        <StatCard value={`+${xpEarned}`} label="XP earned" />
-        <StatCard value={`${flagsFound}/${totalFlags}`} label="flags found" />
-        <StatCard value={`${dashboard.accuracy}%`} label="accuracy" />
-      </div>
+    const renderText = (value) => renderReviewedText(value, redFlags, selectedFlags);
 
-      <section className="feedback-card red-flags-card">
-        <h2>Red Flags Explained</h2>
+    return (
+        <main className="feedback-page">
+            <ResultBanner
+                correct={correct}
+                message={message}
+                subMessage={subMessage}
+                scenario={`Scenario ${scenarioIndex}/${scenarioTotal}`}
+            />
 
-        <ul>
-          {explainedFlags.map((flag) => (
-            <li key={flag.label}>
-              <span className={`flag-dot ${flag.status === 'found' ? 'is-found' : 'is-missed'}`} />
-              <p>
-                <strong>{flag.label}</strong>
-                <span> ({flag.detail})</span>
-              </p>
-            </li>
-          ))}
-        </ul>
-      </section>
+            <div className="feedback-stats feedback-stats-polished">
+                <StatCard value={`+${xpEarned}`} label="XP earned" tone="primary" />
+                <StatCard value={`${flagsFound}/${totalFlags}`} label="flags found" tone="success" />
+                <StatCard value={`${dashboard.accuracy}%`} label="accuracy" tone="gold" />
+            </div>
 
-      <section className="feedback-card xp-card">
-        <p className="xp-earned">+{xpEarned} XP earned</p>
-        <p className="xp-progress-text">
-          {xpCurrent} / {dashboard.xpNextLevel} XP to Level {dashboard.level + 1}
-        </p>
+            <section className="feedback-card feedback-decision-card">
+                <div className="decision-left">
+                    <h2>Your Decision</h2>
+                    <p>
+                        Your verdict:{' '}
+                        <strong className={correct ? 'is-primary-text' : 'is-danger-text'}>
+                            {decision}
+                        </strong>
+                    </p>
+                    <p>
+                        Correct answer: <strong className="is-success-text">{expectedDecision}</strong>
+                    </p>
+                </div>
 
-        <div className="progress-track">
-          <div className="progress-fill" style={{ width: `${progress}%` }} />
-        </div>
-      </section>
+                <div className="decision-xp">
+                    <span>Max XP for this scenario</span>
+                    <strong>{scenario.xp} XP</strong>
+                </div>
+            </section>
 
-      <div className="feedback-actions">
-        <Link to="/history" className="feedback-secondary-btn">
-          View history
-        </Link>
+            <section className="feedback-card reviewed-email-card">
+                <div className="feedback-section-heading">
+                    <h2>Reviewed Email</h2>
 
-        <Link to={nextScenarioPath} className="feedback-primary-btn">
-          {isLastScenario ? 'To dashboard' : 'Next scenario ->'}
-        </Link>
-      </div>
-    </main>
-  );
+                    <div className="feedback-legend">
+            <span>
+              <i className="legend-found" /> Found
+            </span>
+                        <span>
+              <i className="legend-missed" /> Missed
+            </span>
+                    </div>
+                </div>
+
+                <div className="feedback-email">
+                    <p>
+                        <strong>From:</strong> {scenario.senderName} &lt;{renderText(scenario.from)}&gt;
+                    </p>
+                    <p>
+                        <strong>To:</strong> {scenario.to}
+                    </p>
+                    <p>
+                        <strong>Date:</strong> {formatScenarioDate(scenario.date)}
+                    </p>
+
+                    <hr />
+
+                    <h3>{renderText(scenario.subject)}</h3>
+                    <p>{renderText(scenario.body)}</p>
+                </div>
+            </section>
+
+            <section className="feedback-card red-flags-card polished-red-flags">
+                <h2>Red Flags Explained</h2>
+
+                <ul>
+                    {explainedFlags.map((flag) => (
+                        <li
+                            key={flag.label}
+                            className={flag.status === 'found' ? 'is-found-row' : 'is-missed-row'}
+                        >
+              <span
+                  className={`flag-status-icon ${
+                      flag.status === 'found' ? 'is-found' : 'is-missed'
+                  }`}
+              >
+                {flag.status === 'found' ? '✓' : '×'}
+              </span>
+
+                            <strong>{flag.label}</strong>
+                            <span>{flag.detail}</span>
+
+                            <em>{flag.status === 'found' ? 'Found' : 'Missed'}</em>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+
+            <section className="feedback-card xp-card polished-xp-card">
+                <div>
+                    <p className="xp-earned">+{xpEarned} XP earned</p>
+                    <p className="xp-progress-text">
+                        {xpCurrent} / {dashboard.xpNextLevel} XP to Level {dashboard.level + 1}
+                    </p>
+                </div>
+
+                <span>{xpRemaining} XP until Level {dashboard.level + 1}</span>
+
+                <div className="progress-track">
+                    <div className="progress-fill" style={{ width: `${progress}%` }} />
+                </div>
+            </section>
+
+            <div className="feedback-actions">
+                <Link to="/history" className="feedback-secondary-btn">
+                    View history
+                </Link>
+
+                <Link to={nextScenarioPath} className="feedback-primary-btn">
+                    {isLastScenario ? 'To dashboard' : 'Next scenario ->'}
+                </Link>
+            </div>
+        </main>
+    );
 }
 
 export default Feedback;
