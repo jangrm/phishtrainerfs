@@ -1,17 +1,20 @@
 :root {
     --text: #57515f;
     --text-h: #15111d;
-    --bg: #f5f1fa;
+    --bg: #d2d2d8;
     --surface: #ffffff;
-    --surface-muted: #e5e1eb;
-    --surface-soft: #fdfcff;
-    --border: #d8d1e0;
+    --surface-muted: #e6e6e9;
+    --surface-soft: #fdfdfd;
+    --border: #d6d6da;
     --accent: #7c3aed;
     --accent-strong: #5b21b6;
     --accent-bg: rgba(124, 58, 237, 0.12);
     --success: #0f9f6e;
     --success-soft: rgba(15, 159, 110, 0.14);
     --danger: #dc2626;
+    --gold: #b45309;
+    --gold-text: #7c3a0a;
+    --gold-soft: rgba(180, 83, 9, 0.14);
     --shadow: rgba(55, 35, 88, 0.12) 0 14px 30px;
 
     --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
@@ -92,7 +95,7 @@ nav {
     align-items: center;
     background:
             radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.32), transparent 24%),
-            linear-gradient(135deg, var(--success), var(--accent));
+            linear-gradient(135deg, var(--accent-strong), var(--accent));
     border-radius: 10px;
     box-shadow: 0 8px 18px rgba(124, 58, 237, 0.24);
     color: white;
@@ -192,7 +195,7 @@ nav a:focus-visible {
 .accuracy-meter {
     align-items: center;
     aspect-ratio: 1;
-    background: conic-gradient(var(--success) 0 var(--accuracy), #d9d3e1 var(--accuracy) 100%);
+    background: conic-gradient(var(--success) 0 var(--accuracy), var(--border) var(--accuracy) 100%);
     border-radius: 50%;
     box-shadow:
             0 12px 24px rgba(55, 35, 88, 0.12),
@@ -283,14 +286,14 @@ nav a:focus-visible {
 }
 
 .progress-track {
-    background: #d8d1e0;
+    background: var(--border);
     border-radius: 999px;
     height: 14px;
     overflow: hidden;
 }
 
 .progress-fill {
-    background: linear-gradient(90deg, var(--accent), var(--success));
+    background: linear-gradient(90deg, var(--accent-strong), var(--accent));
     border-radius: inherit;
     height: 100%;
 }
@@ -310,13 +313,6 @@ nav a:focus-visible {
     font-size: 13px;
     font-weight: 800;
     padding: 6px 12px;
-}
-
-.data-note {
-    color: var(--accent-strong);
-    font-size: 13px;
-    font-weight: 700;
-    margin-top: 8px;
 }
 
 .stats-row {
@@ -366,12 +362,12 @@ nav a:focus-visible {
 }
 
 .stat-card.is-gold {
-    background: rgba(245, 158, 11, 0.14);
-    border-color: rgba(245, 158, 11, 0.28);
+    background: var(--gold-soft);
+    border-color: rgba(180, 83, 9, 0.3);
 }
 
 .stat-card.is-gold .stat-value {
-    color: #a16207;
+    color: var(--gold-text);
 }
 
 .stat-value {
@@ -435,9 +431,9 @@ nav a:focus-visible {
 }
 
 .section-tag.is-gold {
-    background: rgba(234, 179, 8, 0.16);
-    border: 1px solid rgba(234, 179, 8, 0.34);
-    color: #854d0e;
+    background: var(--gold-soft);
+    border: 1px solid rgba(180, 83, 9, 0.34);
+    color: var(--gold-text);
 }
 
 .section-tag.is-purple {
@@ -455,7 +451,7 @@ nav a:focus-visible {
 
 .streak-dot,
 .badge-dot {
-    background: #c8c1d1;
+    background: #c9c9cd;
     border-radius: 5px;
     display: inline-flex;
     height: 34px;
@@ -538,7 +534,7 @@ nav a:focus-visible {
 }
 
 .badge-label {
-    color: #6f4ca0;
+    color: var(--accent-strong);
     font-size: 12px;
     font-weight: 800;
     overflow: hidden;
@@ -553,9 +549,9 @@ nav a:focus-visible {
 
 .badge-card .badge-dot {
     align-items: center;
-    background: #ebe8ef;
+    background: #ececee;
     box-shadow: inset 0 0 0 1px rgba(55, 35, 88, 0.05);
-    color: #b8b0c2;
+    color: #b6b6ba;
     display: grid;
     font-family: var(--sans);
     font-size: 28px;
@@ -631,7 +627,7 @@ nav a:focus-visible {
 
 .difficulty-row button {
     align-items: center;
-    background: #eeeaf3;
+    background: #eeeef0;
     border: 1px solid transparent;
     color: var(--text-h);
     display: flex;
@@ -660,9 +656,9 @@ nav a:focus-visible {
 }
 
 .difficulty-row .option-medium {
-    background: rgba(250, 204, 21, 0.18);
-    border-color: rgba(250, 204, 21, 0.38);
-    color: #713f12;
+    background: var(--gold-soft);
+    border-color: rgba(180, 83, 9, 0.38);
+    color: var(--gold-text);
 }
 
 .difficulty-row .option-hard {
@@ -752,7 +748,7 @@ nav a:focus-visible {
 .scenario-header {
     align-items: end;
     background:
-            linear-gradient(135deg, rgba(124, 58, 237, 0.09), rgba(15, 159, 110, 0.08)),
+            linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(91, 33, 182, 0.06)),
             var(--surface-soft);
     display: grid;
     gap: 24px;
@@ -821,7 +817,7 @@ nav a:focus-visible {
 
 .email-toolbar {
     align-items: center;
-    background: #eeeaf3;
+    background: #eeeef0;
     border-bottom: 1px solid var(--border);
     display: flex;
     gap: 7px;
@@ -849,7 +845,7 @@ nav a:focus-visible {
 }
 
 .email-header {
-    background: #f8f5fb;
+    background: #f7f7f8;
     border-bottom: 1px solid var(--border);
     display: grid;
     gap: 8px;
@@ -991,7 +987,7 @@ nav a:focus-visible {
 }
 
 .verdict-buttons button {
-    background: #eeeaf3;
+    background: #eeeef0;
     border: 1px solid transparent;
     border-radius: 8px;
     color: var(--text-h);
@@ -1033,7 +1029,7 @@ nav a:focus-visible {
 
 .history-hero-icon {
     align-items: center;
-    background: linear-gradient(135deg, rgba(124, 58, 237, 0.16), rgba(15, 159, 110, 0.14));
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.18), rgba(91, 33, 182, 0.12));
     border: 1px solid rgba(124, 58, 237, 0.18);
     border-radius: 16px;
     display: inline-flex;
@@ -1052,7 +1048,7 @@ nav a:focus-visible {
 
 .history-hero p,
 .history-panel-header p {
-    color: var(--text-l);
+    color: var(--text);
     font-size: 14px;
     margin: 4px 0 0;
 }
@@ -1173,9 +1169,9 @@ nav a:focus-visible {
 }
 
 .difficulty-filter-row .option-medium {
-    background: rgba(250, 204, 21, 0.2);
-    border-color: rgba(250, 204, 21, 0.34);
-    color: #713f12;
+    background: var(--gold-soft);
+    border-color: rgba(180, 83, 9, 0.34);
+    color: var(--gold-text);
 }
 
 .difficulty-filter-row .option-hard {
@@ -1241,7 +1237,7 @@ nav a:focus-visible {
 }
 
 .history-item:hover {
-    background: #fbf9fd;
+    background: #fafafb;
     border-color: rgba(124, 58, 237, 0.34);
     box-shadow: 0 10px 20px rgba(55, 35, 88, 0.08);
     transform: translateY(-1px);
@@ -1329,8 +1325,8 @@ nav a:focus-visible {
 }
 
 .difficulty-chip.is-medium {
-    background: rgba(250, 204, 21, 0.2);
-    color: #713f12;
+    background: var(--gold-soft);
+    color: var(--gold-text);
 }
 
 .difficulty-chip.is-hard {
@@ -1531,7 +1527,7 @@ nav a:focus-visible {
 }
 
 .feedback-scenario-badge {
-    background: #e6e2eb;
+    background: #e7e7ea;
     border-radius: 10px;
     color: var(--text-h);
     font-size: 17px;
@@ -1601,7 +1597,7 @@ nav a:focus-visible {
 }
 
 .feedback-stats-polished .stat-card.is-gold::before {
-    background: #f59e0b;
+    background: var(--gold);
     content: '↗';
 }
 
