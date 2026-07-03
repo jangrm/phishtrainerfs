@@ -2,13 +2,13 @@
   "dashboard": {
     "level": 9,
     "role": "Analyst",
-    "totalXp": 1928,
-    "xpCurrentLevel": 308,
+    "totalXp": 1988,
+    "xpCurrentLevel": 368,
     "xpNextLevel": 1000,
-    "accuracy": 78,
-    "scenariosDone": 50,
-    "correct": 39,
-    "missed": 11,
+    "accuracy": 77,
+    "scenariosDone": 52,
+    "correct": 40,
+    "missed": 12,
     "streakIcon": "🔥",
     "badgeSectionIcon": "🏅",
     "streakTitle": "Don't break the chain",
@@ -173,7 +173,7 @@
         "value": "Hard"
       }
     ],
-    "selectedDifficulty": "Medium",
+    "selectedDifficulty": "Easy",
     "recommendedDifficulty": "Medium"
   },
   "historySummary": {
@@ -550,86 +550,6 @@
       "result": "Correct",
       "xp": 100,
       "date": "2026-06-24T11:05:00"
-    },
-    {
-      "title": "Invoice with macro attachment",
-      "difficulty": "Hard",
-      "flagsFound": 4,
-      "totalFlags": 4,
-      "result": "Correct",
-      "xp": 100,
-      "date": "2026-07-03T07:24:04.784Z",
-      "id": "lbMq475p054"
-    },
-    {
-      "title": "Invoice with macro attachment",
-      "difficulty": "Hard",
-      "flagsFound": 4,
-      "totalFlags": 4,
-      "result": "Correct",
-      "xp": 100,
-      "date": "2026-07-03T07:24:32.642Z",
-      "id": "uRGkWAKjbiE"
-    },
-    {
-      "title": "PayPal account limitation",
-      "difficulty": "Medium",
-      "flagsFound": 4,
-      "totalFlags": 4,
-      "result": "Correct",
-      "xp": 80,
-      "date": "2026-07-03T07:24:55.263Z",
-      "id": "tBZkCt8eEyg"
-    },
-    {
-      "title": "PayPal account limitation",
-      "difficulty": "Medium",
-      "flagsFound": 4,
-      "totalFlags": 4,
-      "result": "Correct",
-      "xp": 80,
-      "date": "2026-07-03T17:15:14.650Z",
-      "id": "q3UTagaGiaQ"
-    },
-    {
-      "title": "Invoice with macro attachment",
-      "difficulty": "Hard",
-      "flagsFound": 4,
-      "totalFlags": 4,
-      "result": "Correct",
-      "xp": 100,
-      "date": "2026-07-03T17:27:37.229Z",
-      "id": "G5Oqurwd9sk"
-    },
-    {
-      "title": "Invoice with macro attachment",
-      "difficulty": "Hard",
-      "flagsFound": 4,
-      "totalFlags": 4,
-      "result": "Correct",
-      "xp": 100,
-      "date": "2026-07-03T17:28:17.825Z",
-      "id": "MH9vBpj_J30"
-    },
-    {
-      "title": "PayPal account limitation",
-      "difficulty": "Medium",
-      "flagsFound": 0,
-      "totalFlags": 4,
-      "result": "Correct",
-      "xp": 48,
-      "date": "2026-07-03T17:39:24.990Z",
-      "id": "-yYRROiXYo0"
-    },
-    {
-      "title": "PayPal account limitation",
-      "difficulty": "Medium",
-      "flagsFound": 4,
-      "totalFlags": 4,
-      "result": "Correct",
-      "xp": 80,
-      "date": "2026-07-03T17:40:32.373Z",
-      "id": "j1XiU5eiXL4"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
