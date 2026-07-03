@@ -630,14 +630,27 @@ nav a:focus-visible {
 }
 
 .difficulty-row button {
+    align-items: center;
     background: #eeeaf3;
     border: 1px solid transparent;
     color: var(--text-h);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    justify-content: center;
     transition:
             background 0.18s ease,
             border-color 0.18s ease,
             color 0.18s ease,
             transform 0.18s ease;
+}
+
+.recommended-tag {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    opacity: 0.65;
+    text-transform: uppercase;
 }
 
 .difficulty-row .option-easy {
@@ -871,6 +884,7 @@ nav a:focus-visible {
     font-weight: 650;
     line-height: 1.55;
     padding: 0 20px 24px;
+    white-space: pre-line;
 }
 
 .flag-token {
@@ -883,6 +897,14 @@ nav a:focus-visible {
     font-weight: 850;
     padding: 0;
     text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.flag-token:hover {
+    background: rgba(124, 58, 237, 0.1);
+    border-radius: 4px;
+    color: var(--accent-strong);
+    padding: 1px 3px;
 }
 
 .flag-token.is-selected {
@@ -1065,6 +1087,50 @@ nav a:focus-visible {
     gap: 10px;
     justify-content: space-between;
     margin-bottom: 16px;
+}
+
+.history-search {
+    width: 100%;
+}
+
+.history-search-label {
+    color: var(--text-h);
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.history-search-input {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-h);
+    font: inherit;
+    min-height: 40px;
+    padding: 8px 14px;
+    transition:
+            border-color 0.18s ease,
+            box-shadow 0.18s ease;
+    width: 100%;
+}
+
+.history-search-input::placeholder {
+    color: var(--text);
+    opacity: 0.7;
+}
+
+.history-search-input:focus-visible {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-bg);
+    outline: none;
+}
+
+.history-no-results {
+    color: var(--text);
+    font-weight: 700;
+    padding: 18px 4px;
+    text-align: center;
 }
 
 .filter-row {
@@ -1440,6 +1506,14 @@ nav a:focus-visible {
     justify-content: center;
     line-height: 1;
     width: 56px;
+}
+
+.feedback-result-icon.is-correct {
+    background: var(--success);
+}
+
+.feedback-result-icon.is-missed {
+    background: var(--danger);
 }
 
 .feedback-result-title {

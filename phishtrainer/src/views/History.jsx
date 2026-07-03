@@ -43,6 +43,7 @@ function History() {
   );
   const [activeFilter, setActiveFilter] = useState('');
   const [activeDifficulty, setActiveDifficulty] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const items = useMemo(() => historyItems ?? [], [historyItems]);
 
   const summary = useMemo(
@@ -57,6 +58,8 @@ function History() {
       difficultyFilters?.find((filter) => filter.value === activeDifficulty) ??
       difficultyFilters?.[0];
 
+    const query = searchTerm.trim().toLowerCase();
+
     return items.filter((item) => {
       const matchesResult =
         !selectedFilter?.field ||
@@ -64,10 +67,12 @@ function History() {
       const matchesDifficulty =
         !selectedDifficulty?.field ||
         item[selectedDifficulty.field] === selectedDifficulty.match;
+      const matchesSearch =
+        !query || item.title.toLowerCase().includes(query);
 
-      return matchesResult && matchesDifficulty;
+      return matchesResult && matchesDifficulty && matchesSearch;
     });
-  }, [activeDifficulty, activeFilter, difficultyFilters, filters, items]);
+  }, [activeDifficulty, activeFilter, difficultyFilters, filters, items, searchTerm]);
 
   if (isLoading || filtersLoading || difficultyFiltersLoading || summaryLoading) {
     return <EmptyState viewName="history" message="Loading training history..." />;
@@ -83,7 +88,7 @@ function History() {
   }
 
   return (
-    <div className="view history">
+    <main className="view history">
       <section className="history-hero">
         <div className="history-hero-icon" aria-hidden="true">
           {summaryConfig.icon}
@@ -116,6 +121,20 @@ function History() {
         </div>
 
         <div className="history-controls">
+          <form className="history-search" onSubmit={(event) => event.preventDefault()}>
+            <label className="history-search-label" htmlFor="history-search-input">
+              Search sessions
+            </label>
+            <input
+              className="history-search-input"
+              id="history-search-input"
+              type="search"
+              placeholder="Search by title..."
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+            />
+          </form>
+
           <SelectableButtons
             className="filter-row result-filter-row"
             options={filters ?? []}
@@ -134,12 +153,16 @@ function History() {
         </div>
 
         <div className="history-list">
-          {filteredItems.map((item) => (
-            <HistoryEntry item={item} key={item.id} />
-          ))}
+          {filteredItems.length ? (
+            filteredItems.map((item) => (
+              <HistoryEntry item={item} key={item.id} />
+            ))
+          ) : (
+            <p className="history-no-results">No sessions match your search.</p>
+          )}
         </div>
       </section>
-    </div>
+    </main>
   );
 }
 

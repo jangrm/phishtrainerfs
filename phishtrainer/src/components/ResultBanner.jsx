@@ -2,7 +2,7 @@ function ResultBanner({ correct, message, subMessage, scenario }) {
     return (
         <section className="feedback-result-card">
             <div className="feedback-result-content">
-                <div className="feedback-result-icon">
+                <div className={`feedback-result-icon ${correct ? 'is-correct' : 'is-missed'}`}>
                     {correct ? '✓' : '×'}
                 </div>
 

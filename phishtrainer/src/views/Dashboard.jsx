@@ -48,7 +48,7 @@ function Dashboard() {
   }
 
   return (
-    <div className="view dashboard">
+    <main className="view dashboard">
       <section className="dashboard-hero" aria-label="Training progress">
         <div
           className="accuracy-meter"
@@ -101,6 +101,7 @@ function Dashboard() {
               </span>
               {activeStreakDays}-Day Streak
             </h2>
+            <p>{dashboard.streakTitle}</p>
           </div>
           <span className="section-tag is-gold">
             {dashboard.streakBadgeIcon} {dashboard.streakBadge}
@@ -171,7 +172,7 @@ function Dashboard() {
           Start training
         </Link>
       </section>
-    </div>
+    </main>
   );
 }
 
