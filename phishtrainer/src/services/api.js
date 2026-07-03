@@ -10,6 +10,22 @@ export async function getJson(path) {
   return response.json();
 }
 
+export async function postJson(path, data) {
+  const response = await fetch(`${API_URL}${path}`, {
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
+  });
+
+  if (!response.ok) {
+    throw new Error(`Request failed: ${path}`);
+  }
+
+  return response.json();
+}
+
 export async function patchJson(path, data) {
   const response = await fetch(`${API_URL}${path}`, {
     body: JSON.stringify(data),

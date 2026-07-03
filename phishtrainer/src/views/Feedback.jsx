@@ -1,8 +1,10 @@
+import { useEffect, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import EmptyState from '../components/EmptyState';
 import ResultBanner from '../components/ResultBanner';
 import StatCard from '../components/StatCard';
 import { useApiData } from '../hooks/useApiData';
+import { patchJson, postJson } from '../services/api';
 
 function parseSelectedFlags(value) {
     if (!value) return [];
@@ -22,6 +24,10 @@ function formatScenarioDate(value) {
         hour: '2-digit',
         minute: '2-digit',
     }).format(new Date(value));
+}
+
+function capitalize(value) {
+    return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
 function calculateXp(scenario, correct, flagsFound, totalFlags) {
@@ -95,6 +101,68 @@ function Feedback() {
         isLoading: dashboardLoading,
         error: dashboardError,
     } = useApiData('/dashboard', 'Could not load dashboard data.');
+
+    const recordedSearchRef = useRef('');
+
+    useEffect(() => {
+        const search = searchParams.toString();
+        if (recordedSearchRef.current === search) return;
+        if (scenariosLoading || dashboardLoading) return;
+        if (!scenarios?.length || !dashboard) return;
+
+        const scenarioId = searchParams.get('scenarioId');
+        const decision = searchParams.get('decision');
+        const scenario = scenarios.find((item) => item.id === scenarioId);
+        if (!scenario || !decision) return;
+
+        recordedSearchRef.current = search;
+
+        const selectedFlags = [...new Set(parseSelectedFlags(searchParams.get('flags')))];
+        const redFlags = scenario.redFlags ?? [];
+        const totalFlags = redFlags.length;
+        const flagsFound = selectedFlags.filter(
+            (index) => index >= 0 && index < totalFlags,
+        ).length;
+        const expectedDecision = scenario.isPhishing ? 'phishing' : 'legitimate';
+        const correct = decision === expectedDecision;
+        const xpEarned = calculateXp(scenario, correct, flagsFound, totalFlags);
+
+        const scenariosDone = dashboard.scenariosDone + 1;
+        const correctCount = dashboard.correct + (correct ? 1 : 0);
+        const missedCount = dashboard.missed + (correct ? 0 : 1);
+        let level = dashboard.level;
+        let xpCurrentLevel = dashboard.xpCurrentLevel + xpEarned;
+        if (xpCurrentLevel >= dashboard.xpNextLevel) {
+            level += 1;
+            xpCurrentLevel -= dashboard.xpNextLevel;
+        }
+
+        async function recordResult() {
+            await postJson('/history', {
+                title: scenario.title,
+                difficulty: capitalize(scenario.difficulty),
+                flagsFound,
+                totalFlags,
+                result: correct ? 'Correct' : 'Missed',
+                xp: xpEarned,
+                date: new Date().toISOString(),
+            });
+
+            await patchJson('/dashboard', {
+                scenariosDone,
+                correct: correctCount,
+                missed: missedCount,
+                totalXp: dashboard.totalXp + xpEarned,
+                level,
+                xpCurrentLevel,
+                accuracy: Math.round((correctCount / scenariosDone) * 100),
+            });
+        }
+
+        recordResult().catch(() => {
+            recordedSearchRef.current = '';
+        });
+    }, [dashboard, dashboardLoading, scenarios, scenariosLoading, searchParams]);
 
     if (scenariosLoading || dashboardLoading) {
         return <EmptyState message="Loading feedback..." />;
