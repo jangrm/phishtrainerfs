@@ -1,13 +1,13 @@
 {
   "dashboard": {
-    "level": 9,
+    "level": 13,
     "role": "Analyst",
-    "totalXp": 1988,
-    "xpCurrentLevel": 368,
+    "totalXp": 6552,
+    "xpCurrentLevel": 932,
     "xpNextLevel": 1000,
-    "accuracy": 77,
-    "scenariosDone": 52,
-    "correct": 40,
+    "accuracy": 90,
+    "scenariosDone": 118,
+    "correct": 106,
     "missed": 12,
     "streakIcon": "🔥",
     "badgeSectionIcon": "🏅",
@@ -550,6 +550,666 @@
       "result": "Correct",
       "xp": 100,
       "date": "2026-06-24T11:05:00"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:40:13.996Z",
+      "id": "rfXnMCjYE8s"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:19.121Z",
+      "id": "43D39QBgECU"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:19.745Z",
+      "id": "tyQ2Hj83ys4"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:19.941Z",
+      "id": "PjBpwhE1Dp0"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:20.119Z",
+      "id": "9a_zKCAZjB4"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:20.301Z",
+      "id": "nzQQkRlL7P8"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:20.464Z",
+      "id": "zrJHb5P50Dk"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:20.636Z",
+      "id": "OPsGRNGn768"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:20.813Z",
+      "id": "YKjwmTBIxB8"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:20.985Z",
+      "id": "npkGxCfSWOo"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:21.170Z",
+      "id": "8VP7G5_ePoQ"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:21.330Z",
+      "id": "MrDd0GmSqfQ"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:21.529Z",
+      "id": "TAbxIeiR_ro"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:21.693Z",
+      "id": "Tx5In4Nt630"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:21.878Z",
+      "id": "r4hY3GYulpM"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:22.058Z",
+      "id": "n13dIrNpABE"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:22.252Z",
+      "id": "seDMzaNyz34"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:22.440Z",
+      "id": "ykmP0hNLcTw"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:22.632Z",
+      "id": "iriyGtiwl1Y"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:22.805Z",
+      "id": "eSuyOP7dJjU"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:22.981Z",
+      "id": "nV9VW_K7IFA"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:23.160Z",
+      "id": "rZ8E8oozL7I"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:23.339Z",
+      "id": "_g2Q3WiBnDM"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:23.512Z",
+      "id": "-iXMLvDYsJs"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:23.680Z",
+      "id": "n9YFLd_ckFg"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:23.891Z",
+      "id": "N-D5jDxdu0c"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:24.058Z",
+      "id": "u9Xzd_tIj0I"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:24.247Z",
+      "id": "a9i2c2zybTA"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:24.427Z",
+      "id": "Am5kid8hUv0"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:24.585Z",
+      "id": "SqKb_AuLANQ"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:24.767Z",
+      "id": "RPj4OYwmgIA"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:24.943Z",
+      "id": "eZyviw5mzYM"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:25.128Z",
+      "id": "3dI9LidUuao"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:25.300Z",
+      "id": "5Xj7yNrcGZ4"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:25.462Z",
+      "id": "fJ5eBCLEmVY"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:25.638Z",
+      "id": "nDjGHL-MvIM"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:25.814Z",
+      "id": "93mc2Hh0huw"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:25.977Z",
+      "id": "bT4X-2fVs1U"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 1,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 56,
+      "date": "2026-07-10T08:41:26.147Z",
+      "id": "lmf7jAbT-Sg"
+    },
+    {
+      "title": "Microsoft password reset",
+      "difficulty": "Medium",
+      "flagsFound": 4,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 80,
+      "date": "2026-07-10T09:13:23.402Z",
+      "id": "9C56o621r3Q"
+    },
+    {
+      "title": "Microsoft password reset",
+      "difficulty": "Medium",
+      "flagsFound": 4,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 80,
+      "date": "2026-07-10T09:13:29.814Z",
+      "id": "ZZZx2ybwfn0"
+    },
+    {
+      "title": "Microsoft password reset",
+      "difficulty": "Medium",
+      "flagsFound": 4,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 80,
+      "date": "2026-07-10T09:21:52.551Z",
+      "id": "P_rpmnSt2cY"
+    },
+    {
+      "title": "Microsoft password reset",
+      "difficulty": "Medium",
+      "flagsFound": 4,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 80,
+      "date": "2026-07-10T09:21:53.397Z",
+      "id": "IVIErvJZPy8"
+    },
+    {
+      "title": "Microsoft password reset",
+      "difficulty": "Medium",
+      "flagsFound": 4,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 80,
+      "date": "2026-07-10T09:21:55.135Z",
+      "id": "h2s825iYBbc"
+    },
+    {
+      "title": "Microsoft password reset",
+      "difficulty": "Medium",
+      "flagsFound": 4,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 80,
+      "date": "2026-07-10T09:21:55.466Z",
+      "id": "2BtqqhiH7zg"
+    },
+    {
+      "title": "Microsoft password reset",
+      "difficulty": "Medium",
+      "flagsFound": 4,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 80,
+      "date": "2026-07-10T09:21:55.631Z",
+      "id": "rEoqteJVPvo"
+    },
+    {
+      "title": "Microsoft password reset",
+      "difficulty": "Medium",
+      "flagsFound": 4,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 80,
+      "date": "2026-07-10T09:21:55.797Z",
+      "id": "Hn2B26P66Qs"
+    },
+    {
+      "title": "Microsoft password reset",
+      "difficulty": "Medium",
+      "flagsFound": 4,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 80,
+      "date": "2026-07-10T09:21:55.964Z",
+      "id": "JerhOVcLZEU"
+    },
+    {
+      "title": "Microsoft password reset",
+      "difficulty": "Medium",
+      "flagsFound": 4,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 80,
+      "date": "2026-07-10T09:21:56.118Z",
+      "id": "zkapJ8VbT6U"
+    },
+    {
+      "title": "Microsoft password reset",
+      "difficulty": "Medium",
+      "flagsFound": 4,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 80,
+      "date": "2026-07-10T09:21:56.296Z",
+      "id": "Y-Blex93q7o"
+    },
+    {
+      "title": "Microsoft password reset",
+      "difficulty": "Medium",
+      "flagsFound": 4,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 80,
+      "date": "2026-07-10T09:21:56.478Z",
+      "id": "WKqGkod4vg4"
+    },
+    {
+      "title": "Microsoft password reset",
+      "difficulty": "Medium",
+      "flagsFound": 4,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 80,
+      "date": "2026-07-10T09:21:56.665Z",
+      "id": "desrpNtAK3s"
+    },
+    {
+      "title": "Invoice with macro attachment",
+      "difficulty": "Hard",
+      "flagsFound": 4,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 100,
+      "date": "2026-07-10T10:24:56.176Z",
+      "id": "xIYMJ_xMsss"
+    },
+    {
+      "title": "IT device compliance",
+      "difficulty": "Hard",
+      "flagsFound": 0,
+      "totalFlags": 0,
+      "result": "Correct",
+      "xp": 100,
+      "date": "2026-07-10T10:25:42.056Z",
+      "id": "urWW18NRV_E"
+    },
+    {
+      "title": "IT device compliance",
+      "difficulty": "Hard",
+      "flagsFound": 0,
+      "totalFlags": 0,
+      "result": "Correct",
+      "xp": 100,
+      "date": "2026-07-10T10:25:48.800Z",
+      "id": "FoZ3w9oJ3jc"
+    },
+    {
+      "title": "IT device compliance",
+      "difficulty": "Hard",
+      "flagsFound": 0,
+      "totalFlags": 0,
+      "result": "Correct",
+      "xp": 100,
+      "date": "2026-07-10T10:25:49.209Z",
+      "id": "4Qvo2gb8Ss8"
+    },
+    {
+      "title": "IT device compliance",
+      "difficulty": "Hard",
+      "flagsFound": 0,
+      "totalFlags": 0,
+      "result": "Correct",
+      "xp": 100,
+      "date": "2026-07-10T10:25:49.378Z",
+      "id": "13CkgyhLhds"
+    },
+    {
+      "title": "IT device compliance",
+      "difficulty": "Hard",
+      "flagsFound": 0,
+      "totalFlags": 0,
+      "result": "Correct",
+      "xp": 100,
+      "date": "2026-07-10T10:25:49.521Z",
+      "id": "Q3dZDEyZAxw"
+    },
+    {
+      "title": "IT device compliance",
+      "difficulty": "Hard",
+      "flagsFound": 0,
+      "totalFlags": 0,
+      "result": "Correct",
+      "xp": 100,
+      "date": "2026-07-10T10:25:49.698Z",
+      "id": "BhfGu6PNSVc"
+    },
+    {
+      "title": "IT device compliance",
+      "difficulty": "Hard",
+      "flagsFound": 0,
+      "totalFlags": 0,
+      "result": "Correct",
+      "xp": 100,
+      "date": "2026-07-10T10:25:49.852Z",
+      "id": "2Kecvj3SbYQ"
+    },
+    {
+      "title": "IT device compliance",
+      "difficulty": "Hard",
+      "flagsFound": 0,
+      "totalFlags": 0,
+      "result": "Correct",
+      "xp": 100,
+      "date": "2026-07-10T10:25:50.021Z",
+      "id": "m7q1kQohnAU"
+    },
+    {
+      "title": "IT device compliance",
+      "difficulty": "Hard",
+      "flagsFound": 0,
+      "totalFlags": 0,
+      "result": "Correct",
+      "xp": 100,
+      "date": "2026-07-10T10:25:50.177Z",
+      "id": "Zg-GYlTNKoU"
+    },
+    {
+      "title": "IT device compliance",
+      "difficulty": "Hard",
+      "flagsFound": 0,
+      "totalFlags": 0,
+      "result": "Correct",
+      "xp": 100,
+      "date": "2026-07-10T10:25:50.365Z",
+      "id": "5wYYwS40aqA"
+    },
+    {
+      "title": "Executive gift card request",
+      "difficulty": "Hard",
+      "flagsFound": 4,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 110,
+      "date": "2026-07-10T10:26:04.990Z",
+      "id": "6otYX0RwLEU"
+    },
+    {
+      "title": "PayPal account limitation",
+      "difficulty": "Medium",
+      "flagsFound": 4,
+      "totalFlags": 4,
+      "result": "Correct",
+      "xp": 80,
+      "date": "2026-07-10T11:15:26.344Z",
+      "id": "zmTVOcnuQMM"
+    },
+    {
+      "title": "Dropbox shared file",
+      "difficulty": "Easy",
+      "flagsFound": 0,
+      "totalFlags": 0,
+      "result": "Correct",
+      "xp": 50,
+      "date": "2026-07-10T13:40:21.596Z",
+      "id": "4EBIofU51uE"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
